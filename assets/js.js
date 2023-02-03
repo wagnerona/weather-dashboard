@@ -25,6 +25,9 @@ function displayCityInfo() {
         // console.log(response.wind.speed)
         // console.log(response.main.humidity)
 
+        //clear data before appending 
+        $('#today').empty();
+
         let cityDiv = $('<div class="city">')
 
         let cityName = $('<h1>').text(city + (moment().format('[ ]D/M/YYYY')));
@@ -77,6 +80,8 @@ $("#search-button").on("click", function (event) {
 
     renderButtons();
 
+
+    // $('#search-input').text.empty()
 });
 
 
