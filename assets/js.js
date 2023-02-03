@@ -30,15 +30,15 @@ function displayCityInfo() {
         cityDiv.append(cityName);
 
         let temp = response.main.temp
-        let pOne = $('<p>').text('Temperature: ' + temp)
+        let pOne = $('<p>').text('Temperature: ' + temp + " °C")
         cityDiv.append(pOne)
 
         let wind = response.wind.speed
-        let pTwo = $('<p>').text('Wind: ' + wind)
+        let pTwo = $('<p>').text('Wind: ' + wind + " KPH")
         cityDiv.append(pTwo)
 
         let humidity = response.main.humidity
-        let pThree = $('<p>').text('Humidity: ' + humidity)
+        let pThree = $('<p>').text('Humidity: ' + humidity + " %")
         cityDiv.append(pThree)
 
         $('#today').append(cityDiv);
