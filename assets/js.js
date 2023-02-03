@@ -13,6 +13,7 @@ function displayCityInfo() {
     // Here we are building the URL we need to query the database
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + APIKey;
 
+
     // Creating an AJAX call for the specific movie button being clicked
     $.ajax({
         url: queryURL,
@@ -26,7 +27,7 @@ function displayCityInfo() {
 
         let cityDiv = $('<div class="city">')
 
-        let cityName = $('<h1>').text(city);
+        let cityName = $('<h1>').text(city + (moment().format('[ ]D/M/YYYY')));
         cityDiv.append(cityName);
 
         let temp = response.main.temp
@@ -45,11 +46,6 @@ function displayCityInfo() {
 
     })
 };
-
-
-
-
-
 
 
 function renderButtons() {
