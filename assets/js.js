@@ -1,12 +1,13 @@
 let cities = [];
 
 
-function displayCityInfo() {
+$("#search-button").on("click", function(event) {
 
+    event.preventDefault();
     // Add your own API key between the ""
     let APIKey = "166a433c57516f51dfab1f7edaed8413";
 
-    let city = $(this).attr('data-city')
+    let city = $("#search-input").val();
 
     // console.log(city);
 
@@ -48,7 +49,7 @@ function displayCityInfo() {
         $('#today').append(cityDiv);
 
     })
-};
+});
 
 
 function renderButtons() {
@@ -70,24 +71,24 @@ function renderButtons() {
 }
 
 // This function handles events where one button is clicked
-$("#search-button").on("click", function (event) {
+// $("#search-button").on("click", function (event) {
 
-    event.preventDefault();
-    //  $('buttons-view').add('<button>').addClass('movieName')
-    const newCity = $("#search-input").val();
+//     event.preventDefault();
+//     //  $('buttons-view').add('<button>').addClass('movieName')
+//     const newCity = $("#search-input").val();
 
-    cities.push(newCity);
+//     cities.push(newCity);
 
-    renderButtons();
+//     renderButtons();
 
 
-    // $('#search-input').text.empty()
-});
+//     // $('#search-input').text.empty()
+// });
 
 
 // Adding a click event listener to all elements with a class of "movie-btn"
-$(document).on("click", ".city-button", displayCityInfo);
+// $(document).on("click", ".city-button", displayCityInfo);
 
 
 // Calling the renderButtons function to display the initial list of movies
-renderButtons();
+// renderButtons();
