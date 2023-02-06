@@ -1,5 +1,9 @@
 let cities = [];
 
+// Retrieve the cities array from local storage
+if (localStorage.getItem("cities")) {
+    cities = JSON.parse(localStorage.getItem("cities"));
+}
 
 function displayCityInfo(city) {
 
@@ -99,6 +103,7 @@ function renderButtons() {
 
     cityContainer.empty();
 
+
     cities.forEach(function (city) {
         const cityButton = $('<button>');
         cityButton.text(city);
@@ -130,6 +135,8 @@ $("#search-button").on("click", function (event) {
     } else {
         displayCityInfo(newCity)
     }
+    localStorage.setItem("cities", JSON.stringify(cities));
+
     // $('#search-input').text.empty()
 });
 
@@ -142,4 +149,5 @@ $(document).on("click", ".city-button", function () {
 
 // Calling the renderButtons function to display the initial list of movies
 renderButtons();
+
 
