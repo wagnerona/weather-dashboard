@@ -14,7 +14,7 @@ function displayCityInfo(city) {
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + APIKey;
     let fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + APIKey;
 
-   
+
 
 
     // Creating an AJAX call for the specific movie button being clicked
@@ -22,7 +22,7 @@ function displayCityInfo(city) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(queryURL);
+        // console.log(queryURL);
         // console.log(response)
         // console.log(response.main.temp)
         // console.log(response.wind.speed)
@@ -38,7 +38,7 @@ function displayCityInfo(city) {
         cityDiv.append(cityName);
 
         let currentIcon = response.weather[0].icon
-        let weatherIcon = $('<img>').attr( 'src', "http://openweathermap.org/img/wn/" + currentIcon + "@2x.png")
+        let weatherIcon = $('<img>').attr('src', "http://openweathermap.org/img/wn/" + currentIcon + "@2x.png")
         cityDiv.append(weatherIcon)
 
         let temp = response.main.temp
@@ -67,6 +67,9 @@ function displayCityInfo(city) {
 
             let futureDate = $('<h5>' + moment.unix(response.list[i + 1].dt).format('D/M/YYYY') + '<h5>');
 
+            let futureIcon = response.list[i].weather[0].icon
+            let futureWeatherIcon = $('<img>').attr('src', "http://openweathermap.org/img/wn/" + futureIcon + "@2x.png")
+
             let futureTemp = $('<div>' + 'Temp: ' + response.list[i].main.temp + " °C" + '<div>');
 
             let futureWind = $('<div>' + 'Wind: ' + response.list[i].wind.speed + " KPH" + '<div>');
@@ -77,6 +80,7 @@ function displayCityInfo(city) {
             let weatherCardInfo = $('<div>').addClass('card-info').appendTo(weatherCard);
 
             $(futureDate).addClass('card-title').appendTo(weatherCardInfo)
+            $(futureWeatherIcon).addClass('card-icon').appendTo(weatherCardInfo)
             $(futureTemp).addClass('card-title').appendTo(weatherCardInfo)
             $(futureWind).addClass('card-title').appendTo(weatherCardInfo)
             $(futureHumidity).addClass('card-title').appendTo(weatherCardInfo)
