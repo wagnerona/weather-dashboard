@@ -109,15 +109,17 @@ $("#search-button").on("click", function (event) {
     //  $('buttons-view').add('<button>').addClass('movieName')
     const newCity = $("#search-input").val();
 
-    cities.push(newCity);
+    if (!cities.includes(newCity)) {
 
-    console.log(newCity);
+        cities.push(newCity);
+        console.log(newCity);
 
-    renderButtons();
+        renderButtons();
 
-    displayCityInfo(newCity)
-
-
+        displayCityInfo(newCity)
+    } else {
+        displayCityInfo(newCity)
+    }
     // $('#search-input').text.empty()
 });
 
