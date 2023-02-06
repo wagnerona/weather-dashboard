@@ -56,9 +56,9 @@ function displayCityInfo(city) {
         method: "GET"
     }).then(function (response) {
         console.log(fiveDayUrl)
-        for (i = 0; i < 5; i++) {
+        for (i = 5; i < response.list.length; i +=8) {
 
-            let futureDate = $('<h5>' + moment.unix(response.list[i].dt).format('D/M/YYYY') + '<h5>');
+            let futureDate = $('<h5>' + moment.unix(response.list[i+1].dt).format('D/M/YYYY, h:mm:ss a') + '<h5>');
 
             let futureTemp = $('<div>' + response.list[i].main.temp + '<div>');
 
