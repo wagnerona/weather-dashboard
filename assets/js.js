@@ -36,7 +36,7 @@ function displayCityInfo(city) {
         //clear data before appending 
         $('#today').empty();
 
-        let cityDiv = $('<div class="city">')
+        let cityDiv = $('<div class="city main-card">')
 
         let cityName = $('<h1>').text(city + (moment().format('[ ]D/M/YYYY')));
         cityDiv.append(cityName);
@@ -60,6 +60,8 @@ function displayCityInfo(city) {
         $('#today').append(cityDiv);
 
     });
+
+
 
     $.ajax({
         url: fiveDayUrl,
@@ -93,6 +95,7 @@ function displayCityInfo(city) {
 
 
         }
+
     });
 };
 
@@ -107,7 +110,7 @@ function renderButtons() {
     cities.forEach(function (city) {
         const cityButton = $('<button>');
         cityButton.text(city);
-        cityButton.addClass("city-button")
+        cityButton.addClass("city-button btn btn-secondary mt-2")
         cityButton.attr("data-city", city)
         cityContainer.append(cityButton);
 
@@ -150,4 +153,8 @@ $(document).on("click", ".city-button", function () {
 // Calling the renderButtons function to display the initial list of movies
 renderButtons();
 
-
+// Function to clear history
+$('#clear-button').on('click', function () {
+    localStorage.clear();
+    location.reload();
+})
