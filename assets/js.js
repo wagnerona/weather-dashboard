@@ -12,6 +12,7 @@ function displayCityInfo(city) {
 
     // Here we are building the URL we need to query the database
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + APIKey;
+    let fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + APIKey;
 
 
     // Creating an AJAX call for the specific movie button being clicked
@@ -48,7 +49,36 @@ function displayCityInfo(city) {
 
         $('#today').append(cityDiv);
 
-    })
+    });
+
+    $.ajax({
+        url: fiveDayUrl,
+        method: "GET"
+    }).then(function (response) {
+        console.log(fiveDayUrl)
+        for (i = 0; i < 5; i++) {
+
+            let futureDate = $('<h5>' + moment.unix(response.list[i].dt).format('D/M/YYYY') + '<h5>');
+
+            let futureTemp = $('<div>' + response.list[i].main.temp + '<div>');
+
+            let futureWind = $('<div>' + response.list[i].wind.speed + '<div>');
+
+            let futureHumidity = $('<div>' + response.list[i].main.humidity + '<div>');
+
+            let weatherCard = $('<div>').addClass('card').appendTo('#forecast');
+            let weatherCardInfo = $('<div>').addClass('card-info').appendTo(weatherCard);
+
+            $(futureDate).addClass('card-title').appendTo(weatherCardInfo)
+            $(futureTemp).addClass('card-title').appendTo(weatherCardInfo)
+            $(futureWind).addClass('card-title').appendTo(weatherCardInfo)
+            $(futureHumidity).addClass('card-title').appendTo(weatherCardInfo)
+            
+
+
+
+        }
+    });
 };
 
 
