@@ -36,7 +36,7 @@ function displayCityInfo(city) {
         //clear data before appending 
         $('#today').empty();
 
-        let cityDiv = $('<div class="city main-card">')
+        let cityDiv = $('<div class="city main-card border">')
 
         let cityName = $('<h1>').text(city + (moment().format('[ ]D/M/YYYY')));
         cityDiv.append(cityName);
@@ -69,6 +69,12 @@ function displayCityInfo(city) {
     }).then(function (response) {
         console.log(fiveDayUrl)
         $('#forecast').empty();
+
+        const futureTitleEl = $('<h2>').text('5-day Forecast:').attr('class', 'col-12');
+
+        $('#forecast').append(futureTitleEl);
+
+
         for (i = 5; i < response.list.length; i += 8) {
 
             let futureDate = $('<h5>' + moment.unix(response.list[i + 1].dt).format('D/M/YYYY') + '<h5>');
@@ -122,8 +128,11 @@ function renderButtons() {
 // This function handles events where one button is clicked
 $("#search-button").on("click", function (event) {
 
+    if ($("#search-input").val() === ("")) {
+        return
+    } else
 
-    event.preventDefault();
+        event.preventDefault();
     //  $('buttons-view').add('<button>').addClass('movieName')
     const newCity = $("#search-input").val();
 
