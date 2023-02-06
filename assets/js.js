@@ -14,13 +14,15 @@ function displayCityInfo(city) {
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + APIKey;
     let fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + APIKey;
 
+   
+
 
     // Creating an AJAX call for the specific movie button being clicked
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        // console.log(queryURL);
+        console.log(queryURL);
         // console.log(response)
         // console.log(response.main.temp)
         // console.log(response.wind.speed)
@@ -34,6 +36,10 @@ function displayCityInfo(city) {
 
         let cityName = $('<h1>').text(city + (moment().format('[ ]D/M/YYYY')));
         cityDiv.append(cityName);
+
+        let currentIcon = response.weather[0].icon
+        let weatherIcon = $('<img>').attr( 'src', "http://openweathermap.org/img/wn/" + currentIcon + "@2x.png")
+        cityDiv.append(weatherIcon)
 
         let temp = response.main.temp
         let pOne = $('<p>').text('Temperature: ' + temp + " °C")
@@ -59,13 +65,13 @@ function displayCityInfo(city) {
         $('#forecast').empty();
         for (i = 5; i < response.list.length; i += 8) {
 
-            let futureDate = $('<h5>' + moment.unix(response.list[i + 1].dt).format('D/M/YYYY, h:mm:ss a') + '<h5>');
+            let futureDate = $('<h5>' + moment.unix(response.list[i + 1].dt).format('D/M/YYYY') + '<h5>');
 
-            let futureTemp = $('<div>' + response.list[i].main.temp + '<div>');
+            let futureTemp = $('<div>' + 'Temp: ' + response.list[i].main.temp + " °C" + '<div>');
 
-            let futureWind = $('<div>' + response.list[i].wind.speed + '<div>');
+            let futureWind = $('<div>' + 'Wind: ' + response.list[i].wind.speed + " KPH" + '<div>');
 
-            let futureHumidity = $('<div>' + response.list[i].main.humidity + '<div>');
+            let futureHumidity = $('<div>' + 'Humidity: ' + response.list[i].main.humidity + " %" + '<div>');
 
             let weatherCard = $('<div>').addClass('card').appendTo('#forecast');
             let weatherCardInfo = $('<div>').addClass('card-info').appendTo(weatherCard);
