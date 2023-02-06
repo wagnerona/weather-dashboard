@@ -36,28 +36,30 @@ function displayCityInfo(city) {
         //clear data before appending 
         $('#today').empty();
 
-        let cityDiv = $('<div class="city main-card border">')
+        let cityDiv = $('<div>').addClass("card")
+        let cityDivInfo = $('<div>').addClass("card-body")
 
         let cityName = $('<h1>').text(city + (moment().format('[ ]D/M/YYYY')));
-        cityDiv.append(cityName);
+        cityDivInfo.append(cityName);
 
         let currentIcon = response.weather[0].icon
         let weatherIcon = $('<img>').attr('src', "http://openweathermap.org/img/wn/" + currentIcon + "@2x.png")
-        cityDiv.append(weatherIcon)
+        cityDivInfo.append(weatherIcon)
 
         let temp = response.main.temp
         let pOne = $('<p>').text('Temperature: ' + temp + " °C")
-        cityDiv.append(pOne)
+        cityDivInfo.append(pOne)
 
         let wind = response.wind.speed
         let pTwo = $('<p>').text('Wind: ' + wind + " KPH")
-        cityDiv.append(pTwo)
+        cityDivInfo.append(pTwo)
 
         let humidity = response.main.humidity
         let pThree = $('<p>').text('Humidity: ' + humidity + " %")
-        cityDiv.append(pThree)
+        cityDivInfo.append(pThree)
 
         $('#today').append(cityDiv);
+        cityDiv.append(cityDivInfo)
 
     });
 
@@ -89,13 +91,13 @@ function displayCityInfo(city) {
             let futureHumidity = $('<div>' + 'Humidity: ' + response.list[i].main.humidity + " %" + '<div>');
 
             let weatherCard = $('<div>').addClass('card').appendTo('#forecast');
-            let weatherCardInfo = $('<div>').addClass('card-info').appendTo(weatherCard);
+            let weatherCardInfo = $('<div>').addClass('card-body').appendTo(weatherCard);
 
             $(futureDate).addClass('card-title').appendTo(weatherCardInfo)
             $(futureWeatherIcon).addClass('card-icon').appendTo(weatherCardInfo)
-            $(futureTemp).addClass('card-title').appendTo(weatherCardInfo)
-            $(futureWind).addClass('card-title').appendTo(weatherCardInfo)
-            $(futureHumidity).addClass('card-title').appendTo(weatherCardInfo)
+            $(futureTemp).addClass('card-text').appendTo(weatherCardInfo)
+            $(futureWind).addClass('card-text').appendTo(weatherCardInfo)
+            $(futureHumidity).addClass('card-text').appendTo(weatherCardInfo)
 
 
 
@@ -130,26 +132,26 @@ $("#search-button").on("click", function (event) {
 
     if ($("#search-input").val() === ("")) {
         return
-    } else
+    } else {
 
         event.preventDefault();
-    //  $('buttons-view').add('<button>').addClass('movieName')
-    const newCity = $("#search-input").val();
+        //  $('buttons-view').add('<button>').addClass('movieName')
+        const newCity = $("#search-input").val();
 
-    if (!cities.includes(newCity)) {
+        if (!cities.includes(newCity)) {
 
-        cities.push(newCity);
-        console.log(newCity);
+            cities.push(newCity);
+            console.log(newCity);
 
-        renderButtons();
+            renderButtons();
 
-        displayCityInfo(newCity)
-    } else {
-        displayCityInfo(newCity)
+            displayCityInfo(newCity)
+        } else {
+            displayCityInfo(newCity)
+        }
+        localStorage.setItem("cities", JSON.stringify(cities));
     }
-    localStorage.setItem("cities", JSON.stringify(cities));
-
-    // $('#search-input').text.empty()
+    $('#search-input').val('')
 });
 
 
