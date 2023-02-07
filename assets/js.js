@@ -26,7 +26,7 @@ function displayCityInfo(city) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        // console.log(queryURL);
+        console.log(fiveDayUrl);
         // console.log(response)
         // console.log(response.main.temp)
         // console.log(response.wind.speed)
@@ -77,7 +77,7 @@ function displayCityInfo(city) {
         $('#forecast').append(futureTitleEl);
 
 
-        for (i = 5; i < response.list.length; i += 8) {
+        for (i = 6; i < response.list.length; i += 8) {
 
             let futureDate = $('<h5>' + moment.unix(response.list[i + 1].dt).format('D/M/YYYY') + '<h5>');
 
@@ -103,7 +103,7 @@ function displayCityInfo(city) {
 
 
         }
-
+    
     });
 };
 
