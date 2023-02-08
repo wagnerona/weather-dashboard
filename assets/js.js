@@ -51,7 +51,7 @@ function displayCityInfo(city) {
         cityDivInfo.append(pOne)
 
         let wind = response.wind.speed
-        let pTwo = $('<p>').text('Wind: ' + wind + " KPH")
+        let pTwo = $('<p>').text('Wind: ' + wind + " MPH")
         cityDivInfo.append(pTwo)
 
         let humidity = response.main.humidity
@@ -74,7 +74,7 @@ function displayCityInfo(city) {
 
         const futureTitleEl = $('<h2>').text('5-day Forecast:').attr('class', 'col-12');
 
-        $('#forecast').append(futureTitleEl);
+        $('#forecast').append(futureTitleEl); 
 
 
         for (i = 6; i < response.list.length; i += 8) {
@@ -86,7 +86,7 @@ function displayCityInfo(city) {
 
             let futureTemp = $('<div>' + 'Temp: ' + response.list[i].main.temp + " °C" + '<div>');
 
-            let futureWind = $('<div>' + 'Wind: ' + response.list[i].wind.speed + " KPH" + '<div>');
+            let futureWind = $('<div>' + 'Wind: ' + response.list[i].wind.speed + " MPH" + '<div>');
 
             let futureHumidity = $('<div>' + 'Humidity: ' + response.list[i].main.humidity + " %" + '<div>');
 
@@ -103,7 +103,7 @@ function displayCityInfo(city) {
 
 
         }
-    
+
     });
 };
 

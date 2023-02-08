@@ -18,37 +18,48 @@ I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 ```
 
-
 ## Acceptance Criteria
 
 Create a weather dashboard with form inputs.
-  * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history
-  * When a user views the current weather conditions for that city they are presented with:
-    * The city name
-    * The date
-    * An icon representation of weather conditions
-    * The temperature
-    * The humidity
-    * The wind speed
-  * When a user view future weather conditions for that city they are presented with a 5-day forecast that displays:
-    * The date
-    * An icon representation of weather conditions
-    * The temperature
-    * The humidity
-  * When a user click on a city in the search history they are again presented with current and future conditions for that city
+
+- When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history
+- When a user views the current weather conditions for that city they are presented with:
+  - The city name
+  - The date
+  - An icon representation of weather conditions
+  - The temperature
+  - The humidity
+  - The wind speed
+- When a user view future weather conditions for that city they are presented with a 5-day forecast that displays:
+  - The date
+  - An icon representation of weather conditions
+  - The temperature
+  - The humidity
+- When a user click on a city in the search history they are again presented with current and future conditions for that city
+
+## Mockup
+
+<img src = "assets/Images/Usage.png">
+
+## Usage
+
+1.  Type a city in the search bar and click search or press enter
+2. Current weather is displayed and a 5 day forecast as well
+3. Check previously searched places or clear the history with the section on the left
+
+## Bugs and improvements
+ 1. Icons that show the weather type change from day and night, for some reason the loop is not targeting the day ones or due to the i starting point it might switch from day to day 
+
+ 2. Weather is not displayed as soon as page is reloaded, this might have to be because im not running the display function as soon as the page loads up
 
 
+## Important notes
 
-## Mockup and usage:
+The base URL for API call needs Latitude and Longitude, in order to convert a city name to geo coordinates a Geocoding API would have been needed. This would need passing this into a function and getting back the coordinates from the city name. In order to make my code more efficient I just used the built-in geoCoder and im making a API request by city name instead.
 
-<img src = "./images/Sequence 01.gif">
+<img src = "assets/Images/built-in-geo-coder.png">
 
- To use this app:
- 
- 1. TBA
-
-
-## License 
+## License
 
 MIT License
 
@@ -71,4 +82,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
